@@ -7,15 +7,17 @@ End-to-end AI pipeline for 5G anomaly detection using real-world tools: Kafka, A
 5g_kpis_sample.csv – Sample log data from gNodeB/eNodeB with KPIs like RSRP, SINR, handover attempts, throughput.
 
 ---
+
 ## 🚀 Project Steps & Code Directory
 
-####1. Kafka ingestion
+#### 1. Kafka ingestion
 
 Goal: Simulate real-time KPI log ingestion from gNodeB/eNodeB
 
 kafka_producer.py: Reads CSV and sends data row-by-row to a Kafka topic
 
 kafka_consumer.py: Consumes messages and stores them to AWS S3 (raw/ bucket)
+
 ---
 
 #### 2. ETL Pyspark
@@ -23,6 +25,7 @@ kafka_consumer.py: Consumes messages and stores them to AWS S3 (raw/ bucket)
 Goal: Clean, transform, and engineer features from raw data
 
 etl_job.py: Reads raw S3 CSV, removes nulls, engineers SINR class, outputs to clean/ S3 zone in Parquet format
+
 ---
 
 #### 3. Ml model
@@ -30,14 +33,15 @@ etl_job.py: Reads raw S3 CSV, removes nulls, engineers SINR class, outputs to cl
 Goal: Train and apply IsolationForest to detect anomalies
 
 anomaly_detector.py: Reads cleaned Parquet, fits model, tags anomalies, outputs results to S3 results
----
 
+---
 
 #### 4. Airflow DAGs
 
 Goal: Orchestrate ETL and ML using Apache Airflow DAGs
 
 etl_ml_pipeline_dag.py: DAG to run ETL, then ML, every hour
+
 ---
 
 #### 5. Docker & Kubernetes
@@ -47,6 +51,7 @@ Goal: Containerize and deploy the project
 Dockerfile: Environment setup for PySpark + ML
 
 k8s_deployment.yaml: Kubernetes deployment and job specs
+
 ---
 
 #### 6. CI/CD
@@ -54,6 +59,7 @@ k8s_deployment.yaml: Kubernetes deployment and job specs
 Goal: Automate deployment with GitHub Actions
 
 .github/workflows/deploy.yml: Triggers Docker build and Kubernetes redeploy on commit
+
 ---
 
 ## 🛠️ Tech Stack
