@@ -10,7 +10,6 @@ End-to-end AI pipeline for 5G anomaly detection using real-world tools: Kafka, A
 ---
 
 ## 📁 Dataset
-
 5g_kpis_sample.csv – Sample log data from gNodeB/eNodeB with KPIs like RSRP, SINR, handover attempts, throughput.
 
 ---
