@@ -1,0 +1,30 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build Docker image
+      run: docker build -t 5g-pipeline:latest .
+
+    - name: Push to DockerHub (optional)
+      run: echo "Skipping push for now"
+
+    - name: Set up Kubeconfig
+      run: echo "$KUBECONFIG_SECRET" > kubeconfig && export KUBECONFIG=kubeconfig
+
+    - name: Deploy to Kubernetes
+      run: kubectl apply -f docker_k8s/k8s_deployment.yaml
