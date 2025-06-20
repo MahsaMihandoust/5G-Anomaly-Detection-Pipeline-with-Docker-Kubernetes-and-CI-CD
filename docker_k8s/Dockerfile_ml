@@ -1,0 +1,15 @@
+
+# Base image
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy script
+COPY anomaly_detector.py .
+
+# Install dependencies
+RUN pip install pandas scikit-learn joblib boto3
+
+# Run ML model
+CMD ["python", "anomaly_detector.py"]

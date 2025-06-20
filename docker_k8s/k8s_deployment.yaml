@@ -1,0 +1,56 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kpi-pipeline-deployment
+  labels:
+    app: kpi-pipeline
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kpi-pipeline
+  template:
+    metadata:
+      labels:
+        app: kpi-pipeline
+    spec:
+      containers:
+      - name: etl-job
+        image: your-dockerhub-username/kpi-etl:latest
+        command: ["python"]
+        args: ["etl_job.py"]
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+
+      - name: ml-anomaly-detector
+        image: your-dockerhub-username/kpi-ml:latest
+        command: ["python"]
+        args: ["anomaly_detector.py"]
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: kpi-daily-pipeline
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: pipeline-runner
+            image: your-dockerhub-username/kpi-pipeline:latest
+            command: ["bash", "-c"]
+            args:
+              - |
+                python etl_job.py &&
+                python anomaly_detector.py
+          restartPolicy: OnFailure
