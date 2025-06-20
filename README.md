@@ -1,5 +1,10 @@
 # 5G-Anomaly-Detection-Pipeline-with-Docker-Kubernetes-and-CI-CD
 
+
+![ChatGPT Image Jun 19, 2025, 08_10_54 PM](https://github.com/user-attachments/assets/a3ba834d-2f61-44c4-be44-d43a0c525fb9)
+
+
+
 End-to-end AI pipeline for 5G anomaly detection using real-world tools: Kafka, AWS S3, Spark, Airflow, Docker, Kubernetes, and scikit-learn.
 
 ---
