@@ -5,7 +5,9 @@
 
 
 
-End-to-end AI pipeline for 5G anomaly detection using real-world tools: Kafka, AWS S3, Spark, Airflow, Docker, Kubernetes, and scikit-learn.
+## Overview:
+This project simulates a real-world 5G network intelligence system, built to detect RAN anomalies (e.g., SINR drop, handover failure) using an end-to-end AI pipeline. It integrates raw KPI log ingestion, scalable processing, machine learning, and automation — aligned with telecom industry needs and Open RAN standards.
+
 
 ---
 
