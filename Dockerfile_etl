@@ -1,0 +1,15 @@
+
+# Base image
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy script
+COPY etl_job.py .
+
+# Install dependencies
+RUN pip install pyspark pandas boto3
+
+# Run ETL job
+CMD ["python", "etl_job.py"]
