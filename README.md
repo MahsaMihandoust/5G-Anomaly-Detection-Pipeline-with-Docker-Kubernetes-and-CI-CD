@@ -1,7 +1,9 @@
 # 5G-Anomaly-Detection-Pipeline-with-Docker-Kubernetes-and-CI-CD
 
 End-to-end AI pipeline for 5G anomaly detection using real-world tools: Kafka, AWS S3, Spark, Airflow, Docker, Kubernetes, and scikit-learn.
+
 ---
+
 ## 📁 Dataset
 
 5g_kpis_sample.csv – Sample log data from gNodeB/eNodeB with KPIs like RSRP, SINR, handover attempts, throughput.
